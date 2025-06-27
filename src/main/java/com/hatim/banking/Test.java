@@ -2,14 +2,16 @@ package com.hatim.banking;
 
 import com.hatim.banking.model.Account;
 import com.hatim.banking.model.Bank;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Test {
 
-
-    public static void main(String[] args) {
+    public void output() {
         Account account;
         Account account1;
         Bank bank;
@@ -30,6 +32,7 @@ public class Test {
         account1.deposit(2000);
         account1.withdraw(1000);
         account1.printBalance();
+        // Test Error Insufficient Balance :
         account1.withdraw(3000);
 
         //Acount 0 :

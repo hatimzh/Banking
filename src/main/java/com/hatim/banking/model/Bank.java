@@ -1,5 +1,6 @@
 package com.hatim.banking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +18,8 @@ public class Bank {
     private int id;
     private String name;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "bank", cascade = CascadeType.ALL)
+    @JsonIgnore
     private ArrayList<Account> accounts;
 
 }

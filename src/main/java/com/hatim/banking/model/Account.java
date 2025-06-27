@@ -1,6 +1,7 @@
 package com.hatim.banking.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hatim.banking.AccountSrvice;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +28,7 @@ public class Account implements AccountSrvice {
     private LocalDate operationDate;
 
     @ManyToOne
+    @JsonIgnore
     private Bank bank;
 
 
@@ -58,10 +60,6 @@ public class Account implements AccountSrvice {
     @Override
     public void printBalance() {
         System.out.println("Balance = "+this.balance);
-    }
-
-    public void printOperations(){
-
     }
 
 
