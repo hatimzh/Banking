@@ -2,42 +2,49 @@ package com.hatim.banking.controller;
 
 import com.hatim.banking.model.Account;
 import com.hatim.banking.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController()
+@RestController
+@RequestMapping("account")
 public class AccountController {
-    private AccountService accountService;
 
-    @GetMapping("/account/get/all")
+    private final AccountService accountService;
+
+    @Autowired
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+    @GetMapping("/get/all")
     public List<Account> getAllAccounts() {
-        return accountService.getAllAccounts();
+        return this.accountService.getAllAccounts();
     }
 
-    @GetMapping("/account/get/{id}")
+    @GetMapping("/get/{id}")
     public Account getAccount(@PathVariable int id) {
-        return accountService.getAccountById(id);
+        return this.accountService.getAccountById(id);
     }
 
-    @GetMapping("/account/get/bank/{bank}")
+    @GetMapping("/get/bank/{bank}")
     public List<Account> getAccountByBankName(@PathVariable String bank) {
-        return accountService.getAccountsByBankName(bank);
+        return this.accountService.getAccountsByBankName(bank);
     }
 
-    @PostMapping("/account/add")
+    @PostMapping("/add")
     public void addAccount(@RequestBody Account account){
-        accountService.addAccount(account);
+        this.accountService.addAccount(account);
     }
 
-    @PutMapping("/account/update")
+    @PutMapping("/update")
     public void updateAccount(@RequestBody Account account){
-        accountService.updateAccount(account);
+        this.accountService.updateAccount(account);
     }
 
-    @DeleteMapping("/account/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteAccount(@PathVariable int id){
-        accountService.deleteAccount(id);
+        this.accountService.deleteAccount(id);
     }
-
 }

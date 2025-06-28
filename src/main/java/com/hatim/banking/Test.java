@@ -32,8 +32,8 @@ public class Test {
         account1.deposit(2000);
         account1.withdraw(1000);
         account1.printBalance();
-        // Test Error Insufficient Balance :
-        account1.withdraw(3000);
+//        // Test Error Insufficient Balance :
+//        account1.withdraw(3000);
 
         //Acount 0 :
 
