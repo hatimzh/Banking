@@ -1,5 +1,8 @@
 # Banking
 Banking system project
+
+Visite this link to see API Endpoints documentation
+http://localhost:8080/swagger-ui/index.html#/bank-controller/addBank
 ___
 Simple test using Test class :
 printing operations in a structured display and handling Insufficient Balance Error
