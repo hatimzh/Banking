@@ -7,16 +7,20 @@ import com.hatim.banking.repo.BankRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class BankService {
-    private BankRepository bankRepository;
+    private final BankRepository bankRepository;
+
+    @Autowired
+    public BankService(BankRepository bankRepository) {
+        this.bankRepository = bankRepository;
+    }
 
 
     public List<Bank> getAllBanks() {

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -21,6 +22,6 @@ public class Bank {
 
     @OneToMany(mappedBy = "bank", cascade = CascadeType.ALL)
     @JsonIgnore
-    private ArrayList<Account> accounts;
+    private List<Account> accounts;
 
 }
