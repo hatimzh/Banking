@@ -84,25 +84,32 @@ public class AccountController {
     }
 
     @Operation(summary = "Déposer de l'argent sur un compte")
-    @PostMapping("/deposit/{id}")
-    public String deposit(
-            @PathVariable int id,
-            @RequestParam int amount) {
-                
-        return accountService.deposit(id, amount);
+    @PostMapping("/deposit")
+    public void deposit(@RequestBody Account account, @RequestParam int amount) {
+        // On recharge le compte depuis la base pour éviter toute fraude
+        Account acc = accountService.getAccountById(account.getId());
+        if (acc != null) {
+            acc.deposit(amount);
+            accountService.updateAccount(acc);
+        }
     }
 
     @Operation(summary = "Retirer de l'argent d'un compte")
-    @PostMapping("/withdraw/{id}")
-    public String withdraw(
-            @PathVariable int id,
-            @RequestParam int amount) {
-        return accountService.withdraw(id, amount);
+    @PostMapping("/withdraw")
+    public void withdraw(@RequestBody Account account, @RequestParam int amount) {
+        Account acc = accountService.getAccountById(account.getId());
+        if (acc != null) {
+            acc.withdraw(amount);
+            accountService.updateAccount(acc);
+        }
     }
 
     @Operation(summary = "Afficher le solde d'un compte")
-    @GetMapping("/balance/{id}")
-    public String printBalance(@PathVariable int id) {
-        return accountService.printBalance(id);
+    @PostMapping("/balance")
+    public void printBalance(@RequestBody Account account) {
+        Account acc = accountService.getAccountById(account.getId());
+        if (acc != null) {
+            acc.printBalance();
+        }
     }
 }

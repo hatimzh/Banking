@@ -42,48 +42,5 @@ public class AccountService implements AccountSrvice {
         this.accountRepository.deleteById(id);
     }
 
-    // Implémentation des méthodes de l'interface AccountSrvice
-
-    @Override
-    public String deposit(int accountId, int amount) {
-        Account account = accountRepository.findById(accountId).orElse(null);
-        if (account == null) {
-            return "Compte non trouvé";
-        }
-        try {
-            account.deposit(amount); // utilise la méthode du modèle
-            accountRepository.save(account);
-            return String.format("%-15s || %-10s || %-10s%n%-15s ||  %-9s || %-10s%n",
-                    "Date", "Amount", "Balance",
-                    account.getOperationDate(), amount, account.getBalance());
-        } catch (Exception e) {
-            return e.getMessage();
-        }
-    }
-
-    @Override
-    public String withdraw(int accountId, int amount) {
-        Account account = accountRepository.findById(accountId).orElse(null);
-        if (account == null) {
-            return "Compte non trouvé";
-        }
-        try {
-            account.withdraw(amount);
-            accountRepository.save(account);
-            return String.format("%-15s || %-10s || %-10s%n%-15s || - %-8s || %-10s%n",
-                    "Date", "Amount", "Balance",
-                    account.getOperationDate(), amount, account.getBalance());
-        } catch (Exception e) {
-            return e.getMessage();
-        }
-    }
-
-    @Override
-    public String printBalance(int accountId) {
-        Account account = accountRepository.findById(accountId).orElse(null);
-        if (account == null) {
-            return "Compte non trouvé";
-        }
-        return "Balance = " + account.getBalance();
-    }
+    
 }
