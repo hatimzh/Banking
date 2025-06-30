@@ -46,6 +46,7 @@ public class Account implements AccountSrvice {
     public void withdraw(int amount) {
         this.operationDate = LocalDate.now();
         if(this.balance < amount) {
+            System.out.println("******Insufficient Balance******");
             throw new RuntimeException("******Insufficient Balance******");
         }
         this.balance -= amount;

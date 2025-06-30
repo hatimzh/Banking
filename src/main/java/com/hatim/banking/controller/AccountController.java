@@ -82,4 +82,27 @@ public class AccountController {
             @PathVariable int id){
         this.accountService.deleteAccount(id);
     }
+
+    @Operation(summary = "Déposer de l'argent sur un compte")
+    @PostMapping("/deposit/{id}")
+    public String deposit(
+            @PathVariable int id,
+            @RequestParam int amount) {
+                
+        return accountService.deposit(id, amount);
+    }
+
+    @Operation(summary = "Retirer de l'argent d'un compte")
+    @PostMapping("/withdraw/{id}")
+    public String withdraw(
+            @PathVariable int id,
+            @RequestParam int amount) {
+        return accountService.withdraw(id, amount);
+    }
+
+    @Operation(summary = "Afficher le solde d'un compte")
+    @GetMapping("/balance/{id}")
+    public String printBalance(@PathVariable int id) {
+        return accountService.printBalance(id);
+    }
 }
