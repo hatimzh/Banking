@@ -2,11 +2,11 @@ package com.hatim.banking.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hatim.banking.AccountSrvice;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +28,8 @@ public class Account implements AccountSrvice {
     private LocalDate operationDate;
 
     @ManyToOne
-    @JsonIgnore
+    @JoinColumn(name = "bank_id")
+    @JsonIgnoreProperties({"accounts"})
     private Bank bank;
 
 
